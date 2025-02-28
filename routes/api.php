@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\WorkshopsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('workshops', WorkshopsController::class);
+Route::apiResource('services', ServicesController::class);
 
 
 Route::post('/register', [AuthController::class, 'register']);
