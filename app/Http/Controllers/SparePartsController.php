@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Services;
+use App\Models\SpareParts;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Gate;
 
-class ServicesController extends Controller implements HasMiddleware
+class SparePartsController extends Controller implements HasMiddleware
 {
     public static function middleware()
     {
@@ -17,7 +16,7 @@ class ServicesController extends Controller implements HasMiddleware
 
     public function index(Request $request)
     {
-        $query = Services::query();
+        $query = SpareParts::query();
 
         if ($request->has('search') && $request->search != '') {
             $searchTerm = $request->get('search');
@@ -25,11 +24,11 @@ class ServicesController extends Controller implements HasMiddleware
                 $query->where('name', 'like', '%'.$searchTerm.'%')
                       ->orWhere('description', 'like', '%'.$searchTerm.'%')
                       ->orWhere('price', 'like', '%'.$searchTerm.'%')
-                      ->orWhere('duration', 'like', '%'.$searchTerm.'%');
+                      ->orWhere('stock', 'like', '%'.$searchTerm.'%');
             });
         }
-        $services = $query->get();
-        return response()->json($services);
+        $spareParts = $query->get();
+        return response()->json($spareParts);
     }
 
     public function store(Request $request)
@@ -39,31 +38,31 @@ class ServicesController extends Controller implements HasMiddleware
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'price' => 'required|numeric',
-            'duration' => 'required|numeric',
+            'stock' => 'required|numeric',
         ]);
 
-        $service = Services::create($fields);
+        $sparePart = SpareParts::create($fields);
 
-        return $service;
+        return $sparePart;
     }
 
     public function show($id)
     {
-        $service = Services::find($id);
+        $sparePart = SpareParts::find($id);
 
-        if (!$service) {
-            return response()->json(['message' => 'Service not found'], 404);
+        if (!$sparePart) {
+            return response()->json(['message' => 'Spare part not found'], 404);
         }
 
-        return response()->json($service);
+        return response()->json($sparePart);
     }
 
     public function update(Request $request, $id)
     {
-        $service = Services::find($id);
+        $sparePart = SpareParts::find($id);
 
-        if (!$service) {
-            return response()->json(['message' => 'Service not found'], 404);
+        if (!$sparePart) {
+            return response()->json(['message' => 'Spare part not found'], 404);
         }
 
         $fields = $request->validate([
@@ -71,22 +70,24 @@ class ServicesController extends Controller implements HasMiddleware
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'price' => 'required|numeric',
-            'duration' => 'required|numeric',
+            'stock' => 'required|numeric',
         ]);
-        $service->update($fields);
 
-        return $service;
+        $sparePart->update($fields);
+
+        return $sparePart;
     }
 
-    public function destroy(Services $service, $id)
+    public function destroy($id)
     {
-        $service = Services::find($id);
+        $sparePart = SpareParts::find($id);
 
-        if (!$service) {
-            return response()->json(['message' => 'Service not found'], 404);
+        if (!$sparePart) {
+            return response()->json(['message' => 'Spare part not found'], 404);
         }
 
-        $service->delete();
-        return response()->json(['message' => 'Service deleted']);
+        $sparePart->delete();
+
+        return response()->json(['message' => 'Spare part deleted']);
     }
 }

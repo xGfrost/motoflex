@@ -26,4 +26,9 @@ class Workshops extends Model
     {
         return $this->hasMany(Services::class);
     }
+
+    public function spareParts()
+    {
+        return $this->hasMany(SpareParts::class);
+    }
 }
