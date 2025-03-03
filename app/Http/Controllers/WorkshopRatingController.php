@@ -28,7 +28,16 @@ class WorkshopRatingController extends Controller implements HasMiddleware
             });
         }
         $workshopratings = $query->get();
-        return response()->json($workshopratings);
+        $workshopsWithRatings = $workshopratings->groupBy('workshop_id')->map(function ($ratings, $workshopId) {
+            $averageRating = $ratings->avg('rating');
+            return [
+                'workshop_id' => $workshopId,
+                'average_rating' => $averageRating,
+                'ratings' => $ratings
+            ];
+        });
+    
+        return response()->json($workshopsWithRatings);
     }
 
     public function show($id)
@@ -39,7 +48,13 @@ class WorkshopRatingController extends Controller implements HasMiddleware
             return response()->json(['message' => 'Workshop rating not found'], 404);
         }
 
-        return response()->json($workshoprating);
+        $averageRating = $workshoprating->avg('rating');
+
+        return response()->json([
+            'workshop_id' => $id,
+            'average_rating' => $averageRating,
+            'ratings' => $workshoprating
+        ]);
     }
 
     public function store(Request $request)
