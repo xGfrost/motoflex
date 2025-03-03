@@ -65,5 +65,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Workshops::class);
     }
+
+    public function workshopRatings()
+    {
+        return $this->hasMany(WorkshopRating::class);
+    }
     
 }

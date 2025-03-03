@@ -31,4 +31,9 @@ class Workshops extends Model
     {
         return $this->hasMany(SpareParts::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(WorkshopRating::class);
+    }
 }

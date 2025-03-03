@@ -5,6 +5,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SparePartsController;
+use App\Http\Controllers\WorkshopRatingController;
 use App\Http\Controllers\WorkshopsController;
 use App\Models\SpareParts;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('workshops', WorkshopsController::class);
 Route::apiResource('services', ServicesController::class);
 Route::apiResource('spareparts', SparePartsController::class);
+Route::apiResource('workshopratings', WorkshopRatingController::class);
 
 
 Route::post('/register', [AuthController::class, 'register']);
