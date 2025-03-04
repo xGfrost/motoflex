@@ -8,6 +8,7 @@ use App\Http\Controllers\SparePartsController;
 use App\Http\Controllers\WorkshopRatingController;
 use App\Http\Controllers\WorkshopsController;
 use App\Http\Controllers\serviceReminderController;
+use App\Http\Controllers\workshopReportsController;
 use App\Models\SpareParts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::apiResource('services', ServicesController::class);
 Route::apiResource('spareparts', SparePartsController::class);
 Route::apiResource('workshopratings', WorkshopRatingController::class);
 Route::apiResource('servicereminders', serviceReminderController::class);
+Route::apiResource('workshopreports', workshopReportsController::class);
 
 
 Route::post('/register', [AuthController::class, 'register']);
