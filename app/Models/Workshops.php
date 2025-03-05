@@ -41,4 +41,9 @@ class Workshops extends Model
     {
         return $this->hasMany(WorkshopReports::class);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(chats::class);
+    }
 }

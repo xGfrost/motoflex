@@ -75,5 +75,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(serviceReminder::class);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(chats::class);
+    }
     
 }
