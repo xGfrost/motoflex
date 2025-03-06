@@ -80,5 +80,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(chats::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(transaction::class);
+    }
     
 }
