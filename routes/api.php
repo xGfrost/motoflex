@@ -25,7 +25,7 @@ Route::apiResource('spareparts', SparePartsController::class);
 Route::apiResource('workshopratings', WorkshopRatingController::class);
 Route::apiResource('servicereminders', serviceReminderController::class);
 Route::apiResource('workshopreports', workshopReportsController::class);
-Route::apiResource(('documentreminders'), documentReminderController::class);
+Route::apiResource('documentreminders', documentReminderController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('chats', [chatsController::class, 'index']);
