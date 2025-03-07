@@ -77,8 +77,12 @@ class documentReminderController extends Controller implements HasMiddleware
         return $documentReminder;
     }
 
-    public function destroy(documentReminders $documentReminder)
+    public function destroy(documentReminders $documentReminder, $id)
     {
+        $documentReminder = documentReminders::find($id);
+        if (!$documentReminder) {
+            return response()->json(['message' => 'Document reminder not found'], 404);
+        }
         Gate::authorize('modify', $documentReminder);
         $documentReminder->delete();
 
