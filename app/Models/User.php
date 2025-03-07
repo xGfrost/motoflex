@@ -85,5 +85,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(transaction::class);
     }
+
+    public function documentReminders()
+    {
+        return $this->hasMany(documentreminders::class);
+    }
     
 }
