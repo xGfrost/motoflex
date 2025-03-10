@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'wablas' => [
+        'api_key' => env('WABLAS_API_KEY'),
+        'secret_key' => env('WABLAS_SECRET_KEY'),
+        'base_url' => 'https://xxx.wablas.com/api/send-message',
+    ],
 
 ];

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
 
 class documentReminderController extends Controller implements HasMiddleware
 {
@@ -49,7 +50,6 @@ class documentReminderController extends Controller implements HasMiddleware
             'name' => 'required|max:255',
             'expiration_date' => 'required|date',
             'reminder_date' => 'required|date',
-            'is_completed' => 'required|boolean',
         ]);
 
         $documentReminder = $request->user()->documentreminders()->create($fields);
@@ -69,7 +69,6 @@ class documentReminderController extends Controller implements HasMiddleware
             'name' => 'required|max:255',
             'expiration_date' => 'required|date',
             'reminder_date' => 'required|date',
-            'is_completed' => 'required|boolean',
         ]);
 
         $documentReminder->update($fields);
@@ -89,7 +88,31 @@ class documentReminderController extends Controller implements HasMiddleware
         return response()->json(['message' => 'Document reminder deleted']);
     }
 
-    
+    public function sendReminder()
+    {
+        $today = now()->toDateString();
+        $reminders = documentReminders::where('reminder_date', $today)->get();
+
+        foreach ($reminders as $reminder) {
+            $message = "🔔 Pengingat Dokumen: {$reminder->name} akan kedaluwarsa pada {$reminder->expiration_date}.";
+            $this->sendWhatsAppNotification('6281354700130', $message); // Ganti dengan nomor dinamis
+        }
+
+        return response()->json(['message' => 'Notifikasi dikirim']);
+    }
+
+    private function sendWhatsAppNotification($phone, $message)
+    {
+        $apiKey = config('services.wablas.api_key');
+        $secretKey = config('services.wablas.secret_key');
+        $baseUrl = config('services.wablas.base_url');
+
+        Http::post("{$baseUrl}/send-message?token={$apiKey}.{$secretKey}&phone=$phone&message=$message", [
+            'phone' => $phone,
+            'message' => $message,
+            'api_key' => $apiKey,
+        ]);
+    }
 
 
 }

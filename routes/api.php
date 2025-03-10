@@ -26,6 +26,7 @@ Route::apiResource('workshopratings', WorkshopRatingController::class);
 Route::apiResource('servicereminders', serviceReminderController::class);
 Route::apiResource('workshopreports', workshopReportsController::class);
 Route::apiResource('documentreminders', documentReminderController::class);
+Route::post('/send-reminder', [documentReminderController::class, 'sendReminder']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('chats', [chatsController::class, 'index']);
@@ -38,6 +39,9 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::delete('chats/{chatId}', [chatsController::class, 'destroy']);
 });
+
+
+
 
 
 Route::post('/register', [AuthController::class, 'register']);
