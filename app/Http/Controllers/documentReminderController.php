@@ -90,13 +90,12 @@ class documentReminderController extends Controller implements HasMiddleware
 
     public function sendReminder()
 {
-    $today = now()->toDateString(); // Mendapatkan tanggal hari ini
-    $reminders = documentReminders::where('reminder_date', $today)->get(); // Mendapatkan pengingat yang jatuh pada hari ini
+    $today = now()->toDateString(); 
+    $reminders = documentReminders::where('reminder_date', $today)->get(); 
 
     foreach ($reminders as $reminder) {
-        // Membuat pesan pengingat
         $message = "🔔 Pengingat Dokumen: {$reminder->name} akan kedaluwarsa pada {$reminder->expiration_date}.";
-        $this->sendWhatsAppNotification('6281354700130', $message); // Ganti dengan nomor dinamis
+        $this->sendWhatsAppNotification('6281354700130', $message); 
     }
 
     return response()->json(['message' => 'Notifikasi dikirim']);
@@ -104,24 +103,20 @@ class documentReminderController extends Controller implements HasMiddleware
 
 private function sendWhatsAppNotification($phone, $message)
 {
-    // Ambil API base URL dan token dari config
     $baseUrl = config('services.fonnte.base_url');
     $token = config('services.fonnte.fonnte_token');
 
     try {
-        // Mengirim request ke API Fonnte untuk mengirim pesan WhatsApp
         $response = Http::withHeaders([
-            'Authorization' => "Bearer {$token}", // Menambahkan token Bearer di header
+            'Authorization' => "Bearer {$token}", 
         ])->post("{$baseUrl}/send-message", [
-            'phone' => $phone,  // Nomor penerima
-            'message' => $message, // Isi pesan
+            'phone' => $phone,  
+            'message' => $message, 
         ]);
 
-        // Memeriksa jika request berhasil
         if ($response->successful()) {
-            return $response->json();  // Mengembalikan response dalam format JSON
+            return $response->json();  
         } else {
-            // Jika gagal, kirim pesan error
             return response()->json([
                 'error' => 'Gagal mengirim pesan',
                 'status_code' => $response->status(),
@@ -129,7 +124,6 @@ private function sendWhatsAppNotification($phone, $message)
             ], $response->status());
         }
     } catch (\Exception $e) {
-        // Menangani error jika terjadi pengecualian
         return response()->json([
             'error' => 'Terjadi kesalahan',
             'message' => $e->getMessage()
