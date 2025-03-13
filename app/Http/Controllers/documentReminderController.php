@@ -88,48 +88,48 @@ class documentReminderController extends Controller implements HasMiddleware
         return response()->json(['message' => 'Document reminder deleted']);
     }
 
-    public function sendReminder()
-{
-    $today = now()->toDateString(); 
-    $reminders = documentReminders::where('reminder_date', $today)->get(); 
+//     public function sendReminder()
+// {
+//     $today = now()->toDateString(); 
+//     $reminders = documentReminders::where('reminder_date', $today)->get(); 
 
-    foreach ($reminders as $reminder) {
-        $message = "🔔 Pengingat Dokumen: {$reminder->name} akan kedaluwarsa pada {$reminder->expiration_date}.";
-        $this->sendWhatsAppNotification('6281354700130', $message); 
-    }
+//     foreach ($reminders as $reminder) {
+//         $message = "🔔 Pengingat Dokumen: {$reminder->name} akan kedaluwarsa pada {$reminder->expiration_date}.";
+//         $this->sendWhatsAppNotification('6281354700130', $message); 
+//     }
 
-    return response()->json(['message' => 'Notifikasi dikirim']);
-}
+//     return response()->json(['message' => 'Notifikasi dikirim']);
+// }
 
-private function sendWhatsAppNotification($phone, $message)
-{
-    $baseUrl = config('services.fonnte.base_url');
-    $token = config('services.fonnte.fonnte_token');
+// private function sendWhatsAppNotification($phone, $message)
+// {
+//     $baseUrl = config('services.fonnte.base_url');
+//     $token = config('services.fonnte.fonnte_token');
 
-    try {
-        $response = Http::withHeaders([
-            'Authorization' => "Bearer {$token}", 
-        ])->post("{$baseUrl}/send-message", [
-            'phone' => $phone,  
-            'message' => $message, 
-        ]);
+//     try {
+//         $response = Http::withHeaders([
+//             'Authorization' => "Bearer {$token}", 
+//         ])->post("{$baseUrl}/send-message", [
+//             'phone' => $phone,  
+//             'message' => $message, 
+//         ]);
 
-        if ($response->successful()) {
-            return $response->json();  
-        } else {
-            return response()->json([
-                'error' => 'Gagal mengirim pesan',
-                'status_code' => $response->status(),
-                'message' => $response->body()
-            ], $response->status());
-        }
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => 'Terjadi kesalahan',
-            'message' => $e->getMessage()
-        ], 500);
-    }
-}
+//         if ($response->successful()) {
+//             return $response->json();  
+//         } else {
+//             return response()->json([
+//                 'error' => 'Gagal mengirim pesan',
+//                 'status_code' => $response->status(),
+//                 'message' => $response->body()
+//             ], $response->status());
+//         }
+//     } catch (\Exception $e) {
+//         return response()->json([
+//             'error' => 'Terjadi kesalahan',
+//             'message' => $e->getMessage()
+//         ], 500);
+//     }
+// }
 
 
 
