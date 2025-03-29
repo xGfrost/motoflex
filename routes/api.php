@@ -32,12 +32,12 @@ Route::post('send-wa', function () {
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array(
-            'target' => '081354700130',
+            'target' => '0895631809241',
             'message' => 'test message',
-            'countryCode' => '62', //optional
+            'countryCode' => '62', 
         ),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: Ym1nx6mH6AXQBLT9yCJ1' //change TOKEN to your actual token
+            'Authorization: Ym1nx6mH6AXQBLT9yCJ1'
         ),
     ));
 
