@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('password'); 
             $table->string('phone_number')->nullable(); 
             $table->text('address')->nullable(); 
-            $table->string('role')->default('user'); 
+            $table->string('role')->default('user');
+            $table->integer('coin')->default(0); 
             $table->rememberToken();
             $table->timestamps(); 
         });
