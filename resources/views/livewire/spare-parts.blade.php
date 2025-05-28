@@ -236,7 +236,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                 <div class="card card-grid min-w-full">
                                     <div class="card-header py-5 flex-wrap gap-2">
                                         <h3 class="card-title">
-                                            Services
+                                            Spare Parts
                                         </h3>
                                         <div class="flex gap-6">
                                             <div class="relative">
@@ -247,7 +247,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                     data-datatable-search="#members_table" placeholder="Search"
                                                     type="text" />
                                             </div>
-                                            <a wire:navigate href="/add/services">
+                                            <a wire:navigate href="/add/spareparts">
                                                 <button class="dropdown-toggle btn btn-sm btn-light" >
                                                     <i class="ki-filled ki-plus-squared">
                                                     </i>

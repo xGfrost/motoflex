@@ -140,15 +140,17 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                             <div class="menu flex flex-col w-full gap-1.5 px-3.5" data-menu="true"
                                 data-menu-accordion-expand-all="false" id="sidebar_primary_menu">
                                 <div class="menu-item">
-                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
-                                        href="/dashboard/admin">
+                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md {{ Request::is('spareparts') ? 'bg-gray-100' : '' }} menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
+                                        href="/dashboard/admin/spareparts">
                                         <span
                                             class="menu-icon items-start text-lg text-gray-600 menu-item-active:text-gray-900 menu-item-here:text-gray-900">
                                             <i class="ki-filled ki-home-3">
                                             </i>
                                         </span>
                                         <span
-                                            class="menu-title text-sm text-gray-800 font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
+                                            class="menu-title text-sm text-gray-800
+                                             font-medium menu-item-here:text-gray-900
+                                              menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
                                             Spare Parts
                                         </span>
                                     </a>
@@ -157,15 +159,15 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                             <div class="menu flex flex-col w-full gap-1.5 px-3.5" data-menu="true"
                                 data-menu-accordion-expand-all="false" id="sidebar_primary_menu">
                                 <div class="menu-item">
-                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
-                                        href="/dashboard/admin/workshops">
+                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md {{ Request::is('orders') ? 'bg-gray-100' : '' }} menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
+                                        href="/dashboard/admin/orders">
                                         <span
                                             class="menu-icon items-start text-lg text-gray-600 menu-item-active:text-gray-900 menu-item-here:text-gray-900">
                                             <i class="ki-filled ki-home-3">
                                             </i>
                                         </span>
                                         <span
-                                            class="menu-title text-sm text-gray-800 font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
+                                            class="menu-title text-sm text-gray-800  font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
                                             Orders
                                         </span>
                                     </a>
@@ -174,7 +176,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                             <div class="menu flex flex-col w-full gap-1.5 px-3.5" data-menu="true"
                                 data-menu-accordion-expand-all="false" id="sidebar_primary_menu">
                                 <div class="menu-item">
-                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
+                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md {{ Request::is('services') ? 'bg-gray-100' : '' }} menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
                                         href="/dashboard/admin/services">
                                         <span
                                             class="menu-icon items-start text-lg text-gray-600 menu-item-active:text-gray-900 menu-item-here:text-gray-900">
@@ -201,249 +203,12 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
             </div>
             <!-- End of Sidebar -->
             <!-- Main -->
-            <div
-                class="flex flex-col grow lg:rounded-l-xl bg-[--tw-content-bg] dark:bg-[--tw-content-bg-dark] border border-gray-300 dark:border-gray-200 lg:ms-[--tw-sidebar-width]">
-                <div class="flex flex-col grow lg:scrollable-y-auto lg:[scrollbar-width:auto] lg:light:[--tw-scrollbar-thumb-color:var(--tw-content-scrollbar-color)] pt-5"
-                    id="scrollable_content">
-                    <main class="grow" role="content">
-                        <!-- Toolbar -->
-                        <div class="pb-5">
-                            <!-- Container -->
-                            <div class="container-fixed flex items-center justify-between flex-wrap gap-3">
-                                <div class="flex flex-col flex-wrap gap-1">
-                                    <h1 class="font-medium text-lg text-gray-900">
-                                        Overview
-                                    </h1>
-                                </div>
-                                <div class="flex items-center flex-wrap gap-1.5 lg:gap-3.5">
-                                    <span class="menu-title">
-                                        Dark Mode
-                                    </span>
-                                    <label class="switch switch-sm">
-                                        <input data-theme-state="dark" data-theme-toggle="true" name="check"
-                                            type="checkbox" value="1" />
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- End of Container -->
-                        </div>
-                        <!-- End of Toolbar -->
-                        <!-- Container -->
-                        <div class="container-fixed">
-                            <div class="grid gap-5 lg:gap-7.5">
-                                <div class="card card-grid min-w-full">
-                                    <div class="card-header py-5 flex-wrap gap-2">
-                                        <h3 class="card-title">
-                                            Spare Parts
-                                        </h3>
-                                        <div class="flex gap-6">
-                                            <div class="relative">
-                                                <i
-                                                    class="ki-filled ki-magnifier leading-none text-md text-gray-500 absolute top-1/2 start-0 -translate-y-1/2 ms-3">
-                                                </i>
-                                                <input class="input input-sm pl-8"
-                                                    data-datatable-search="#members_table" placeholder="Search"
-                                                    type="text" />
-                                            </div>
-                                            <button class="dropdown-toggle btn btn-sm btn-light">
-                                                <i class="ki-filled ki-plus-squared">
-                                                </i>
-                                                Add
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div data-datatable="true" data-datatable-page-size="10">
-                                            <div class="scrollable-x-auto">
-                                                <table class="table table-border" data-datatable-table="true"
-                                                    id="members_table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="w-[60px] text-center">
-                                                                <input class="checkbox checkbox-sm"
-                                                                    data-datatable-check="true" type="checkbox" />
-                                                            </th>
-                                                            <th class="min-w-[300px]">
-                                                                <span class="sort asc">
-                                                                    <span class="sort-label text-gray-700 font-normal">
-                                                                        Member
-                                                                    </span>
-                                                                    <span class="sort-icon">
-                                                                    </span>
-                                                                </span>
-                                                            </th>
-                                                            <th class="text-gray-700 font-normal min-w-[220px]">
-                                                                Roles
-                                                            </th>
-                                                            <th class="min-w-[165px]">
-                                                                <span class="sort">
-                                                                    <span class="sort-label text-gray-700 font-normal">
-                                                                        Location
-                                                                    </span>
-                                                                    <span class="sort-icon">
-                                                                    </span>
-                                                                </span>
-                                                            </th>
-                                                            <th class="min-w-[165px]">
-                                                                <span class="sort">
-                                                                    <span class="sort-label text-gray-700 font-normal">
-                                                                        Status
-                                                                    </span>
-                                                                    <span class="sort-icon">
-                                                                    </span>
-                                                                </span>
-                                                            </th>
-                                                            <th class="min-w-[165px]">
-                                                                <span class="sort">
-                                                                    <span class="sort-label text-gray-700 font-normal">
-                                                                        Recent activity
-                                                                    </span>
-                                                                    <span class="sort-icon">
-                                                                    </span>
-                                                                </span>
-                                                            </th>
-                                                            <th class="w-[60px]">
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                <input class="checkbox checkbox-sm"
-                                                                    data-datatable-row-check="true" type="checkbox"
-                                                                    value="1" />
-                                                            </td>
-                                                            <td>
-                                                                <div class="flex items-center gap-2.5">
-                                                                    <div class="">
-                                                                        <img class="h-9 rounded-full"
-                                                                            src="assets/media/avatars/300-3.png" />
-                                                                    </div>
-                                                                    <div class="flex flex-col gap-0.5">
-                                                                        <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                                            href="#">
-                                                                            Tyler Hero
-                                                                        </a>
-                                                                        <span
-                                                                            class="text-xs text-gray-700 font-normal">
-                                                                            26 tasks
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="flex flex-wrap gap-2.5 mb-2">
-                                                                    <span
-                                                                        class="badge badge-sm badge-light badge-outline">
-                                                                        Admin
-                                                                    </span>
-                                                                    <span
-                                                                        class="badge badge-sm badge-light badge-outline">
-                                                                        Support
-                                                                    </span>
-                                                                    <span
-                                                                        class="badge badge-sm badge-light badge-outline">
-                                                                        Editor
-                                                                    </span>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="flex items-center gap-1.5">
-                                                                    <img alt="flag" class="h-4 rounded-full"
-                                                                        src="assets/media/flags/estonia.svg" />
-                                                                    <span
-                                                                        class="leading-none text-gray-800 font-normal">
-                                                                        Estonia
-                                                                    </span>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge badge-sm badge-outline badge-success">
-                                                                    Active
-                                                                </span>
-                                                            </td>
-                                                            <td class="text-gray-800 font-normal">
-                                                                Current session
-                                                            </td>
-                                                            <td class="w-[60px]">
-                                                                <div class="menu" data-menu="true">
-                                                                    <div class="menu-item"
-                                                                        data-menu-item-offset="0, 10px"
-                                                                        data-menu-item-placement="bottom-end"
-                                                                        data-menu-item-placement-rtl="bottom-start"
-                                                                        data-menu-item-toggle="dropdown"
-                                                                        data-menu-item-trigger="click|lg:click">
-                                                                        <button
-                                                                            class="menu-toggle btn btn-sm btn-icon btn-light btn-clear">
-                                                                            <i class="ki-filled ki-dots-vertical">
-                                                                            </i>
-                                                                        </button>
-                                                                        <div class="menu-dropdown menu-default w-full max-w-[175px]"
-                                                                            data-menu-dismiss="true">
-                                                                            <div class="menu-separator">
-                                                                            </div>
-                                                                            <div class="menu-item">
-                                                                                <a class="menu-link" href="#">
-                                                                                    <span class="menu-icon">
-                                                                                        <i class="ki-filled ki-pencil">
-                                                                                        </i>
-                                                                                    </span>
-                                                                                    <span class="menu-title">
-                                                                                        Edit
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="menu-separator">
-                                                                            </div>
-                                                                            <div class="menu-item">
-                                                                                <a class="menu-link" href="#">
-                                                                                    <span class="menu-icon">
-                                                                                        <i class="ki-filled ki-trash">
-                                                                                        </i>
-                                                                                    </span>
-                                                                                    <span class="menu-title">
-                                                                                        Remove
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div
-                                                class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
-                                                <div class="flex items-center gap-2 order-2 md:order-1">
-                                                    Show
-                                                    <select class="select select-sm w-16" data-datatable-size="true"
-                                                        name="perpage">
-                                                    </select>
-                                                    per page
-                                                </div>
-                                                <div class="flex items-center gap-4 order-1 md:order-2">
-                                                    <span data-datatable-info="true">
-                                                    </span>
-                                                    <div class="pagination" data-datatable-pagination="true">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Container -->
-                    </main>
 
-                    <!-- End of Page -->
-                    <!-- Scripts -->
-                    <script src="assets/js/core.bundle.js"></script>
-                    <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
-                    <!-- End of Scripts -->
+        </div>
+    </div>
+    <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
+        {{ $slot }}
+    </div>
 </body>
 
 </html>
