@@ -247,7 +247,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                     data-datatable-search="#members_table" placeholder="Search"
                                                     type="text" />
                                             </div>
-                                            <a wire:navigate href="/add/services">
+                                            <a  href="/add/services">
                                                 <button class="dropdown-toggle btn btn-sm btn-light" >
                                                     <i class="ki-filled ki-plus-squared">
                                                     </i>

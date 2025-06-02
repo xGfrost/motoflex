@@ -8,10 +8,12 @@ Support: https://devs.keenthemes.com
 Follow: https://www.twitter.com/keenthemes
 License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 -->
+
 <!DOCTYPE html>
 <html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="en">
 
 <head>
+
     <base href="../../../../">
     <title>
         DASHBOARD ADMIN
@@ -43,10 +45,16 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
     <link href="assets/vendors/apexcharts/apexcharts.css" rel="stylesheet" />
     <link href="assets/vendors/keenicons/styles.bundle.css" rel="stylesheet" />
     <link href="assets/css/styles.css" rel="stylesheet" />
+
 </head>
+
 
 <body
     class="antialiased flex h-full text-base text-gray-700 [--tw-page-bg:var(--tw-coal-300)] [--tw-content-bg:var(--tw-light)] [--tw-content-bg-dark:var(--tw-coal-500)] [--tw-content-scrollbar-color:#e8e8e8] [--tw-header-height:60px] [--tw-sidebar-width:270px] bg-[--tw-page-bg] lg:overflow-hidden">
+    @yield('content')
+
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     <!-- Theme Mode -->
     <script>
         const defaultThemeMode = 'light'; // light|dark|system
@@ -85,7 +93,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                     <i class="ki-filled ki-menu">
                     </i>
                 </button>
-            </div>
+            </div>    @livewireStyles
+
             <!-- End of Container -->
         </header>
         <!-- End of Header -->
