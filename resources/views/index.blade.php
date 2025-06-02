@@ -16,7 +16,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 
     <base href="../../../../">
     <title>
-        DASHBOARD ADMIN
+        Motoflex
     </title>
     <meta charset="utf-8" />
     <meta content="follow, index" name="robots" />
