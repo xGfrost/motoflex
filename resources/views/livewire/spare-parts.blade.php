@@ -346,7 +346,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                             <div class="flex flex-wrap gap-2.5 mb-2">
                                                                                 <span
                                                                                     class="badge badge-sm badge-light badge-outline">
-                                                                                    {{ $sparepart->description }}
+                                                                                    {{ Str::limit($sparepart->description, 50, '...') }}
                                                                                 </span>
                                                                             </div>
                                                                         </td>
@@ -368,7 +368,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                             </span>
                                                                         </td>
                                                                         <td class="text-gray-800 font-normal">
-                                                                            {{ $sparepart->workshop_id }}
+                                                                            {{ Str::limit($sparepart->workshop->name, 30, '...') }}
                                                                         </td>
                                                                         <td class="w-[60px]">
                                                                             <div class="menu" data-menu="true">
