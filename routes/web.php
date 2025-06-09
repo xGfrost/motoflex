@@ -6,6 +6,7 @@ use App\Livewire\DashboarAdmin;
 use App\Livewire\EditServices;
 use App\Livewire\Orders;
 use App\Livewire\Services;
+use App\Livewire\ShowService;
 use App\Livewire\SpareParts;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,8 @@ Route::get('/dashboard/admin/services', Services::class)->name('services');
 Route::get('/add/spareparts', AddSpareParts::class);
 Route::get('/add/services', AddServices::class);
 Route::get('/edit/{id}/services', EditServices::class);
+Route::get('/dashboard/admin/services/{services_id}/show', ShowService::class)->name('admin.services.show');
+
 
 
 

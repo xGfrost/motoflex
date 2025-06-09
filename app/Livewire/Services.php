@@ -13,6 +13,7 @@ class Services extends Component
     public $search = '';
     public $showFallback = false;
 
+
     public function setSortBy($sortColumn)
     {
         if ($this->sortBy == $sortColumn) {

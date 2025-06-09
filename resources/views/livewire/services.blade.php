@@ -407,6 +407,24 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                         </div>
                                                                                         <div class="menu-item">
                                                                                             <a class="menu-link"
+                                                                                            href="{{ route('admin.services.show', ['services_id' => $service->id]) }}">
+                                                                                                <span
+                                                                                                    class="menu-icon">
+                                                                                                    <i
+                                                                                                        class="ki-filled ki-pencil">
+                                                                                                    </i>
+                                                                                                </span>
+                                                                                                <span
+                                                                                                    class="menu-title"
+                                                                                                    >
+                                                                                                    Show
+                                                                                                </span>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="menu-separator">
+                                                                                        </div>
+                                                                                        <div class="menu-item">
+                                                                                            <a class="menu-link"
                                                                                                 >
                                                                                                 <span
                                                                                                     class="menu-icon">
