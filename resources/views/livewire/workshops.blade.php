@@ -9,7 +9,7 @@ Follow: https://www.twitter.com/keenthemes
 License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 -->
 <!DOCTYPE html>
-<html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <base href="../../../../">
@@ -442,6 +442,30 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                     <!-- Scripts -->
                     <script src="assets/js/core.bundle.js"></script>
                     <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const toggle = document.querySelector('[data-theme-toggle]');
+                            toggle.addEventListener("change", function () {
+                                const isDark = this.checked;
+
+                                if (isDark) {
+                                    document.documentElement.classList.add("dark");
+                                    localStorage.setItem("theme", "dark");
+                                } else {
+                                    document.documentElement.classList.remove("dark");
+                                    localStorage.setItem("theme", "light");
+                                }
+                            });
+
+                            // Saat halaman dimuat, ambil preferensi dari localStorage
+                            const storedTheme = localStorage.getItem("theme");
+                            if (storedTheme === "dark") {
+                                document.documentElement.classList.add("dark");
+                                toggle.checked = true;
+                            }
+                        });
+                    </script>
+
                     <!-- End of Scripts -->
 </body>
 

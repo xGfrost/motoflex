@@ -24,6 +24,15 @@ class Services extends Component
         $this->sortDir = 'ASC';
     }
 
+    public function delete($id)
+    {
+        $services = ModelsServices::find($id);
+
+        $services->delete();
+
+        return $this->redirect('/dashboard/admin/services', navigate: true);
+    }
+
     public function render()
     {
         $query = ModelsServices::query();

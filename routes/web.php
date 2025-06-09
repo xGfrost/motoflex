@@ -3,6 +3,7 @@
 use App\Livewire\AddServices;
 use App\Livewire\AddSpareParts;
 use App\Livewire\DashboarAdmin;
+use App\Livewire\EditServices;
 use App\Livewire\Orders;
 use App\Livewire\Services;
 use App\Livewire\SpareParts;
@@ -19,6 +20,7 @@ Route::get('/dashboard/admin/services', Services::class)->name('services');
 
 Route::get('/add/spareparts', AddSpareParts::class);
 Route::get('/add/services', AddServices::class);
+Route::get('/edit/{id}/services', EditServices::class);
 
 
 

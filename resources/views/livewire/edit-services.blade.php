@@ -7,11 +7,11 @@
                 Services
             </h2>
             <p class="text-sm text-gray-600 dark:text-neutral-400">
-                Add
+                Edit
             </p>
         </div>
 
-        <form wire:submit="save">
+        <form wire:submit="update">
             <!-- Section -->
             <div
                 class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
@@ -26,7 +26,7 @@
                         class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                         <option selected="">Select Product Category</option>
                         @foreach ($all_workshops as $workshop)
-                            <option value="{{ $workshop->id }}" wire:key="{{ $workshop->id }}">{{ $workshop->name }}
+                            <option value="{{ $workshop->id }}" wire:key="{{ $workshop->id }}" {{ $service_details->workshop_id == $workshop->id ? 'selected' : '' }}>{{ $workshop->name }}
                             </option>
                         @endforeach
 

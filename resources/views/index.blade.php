@@ -10,7 +10,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 -->
 
 <!DOCTYPE html>
-<html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 

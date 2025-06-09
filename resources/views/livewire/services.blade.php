@@ -10,7 +10,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 -->
 <div wire:key="spare-parts-{{ rand() }}">
     <!DOCTYPE html>
-    <html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="en">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
         <base href="../../../../">
@@ -19,8 +19,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
         </title>
         <meta charset="utf-8" />
         <meta content="follow, index" name="robots" />
-        <link href="https://127.0.0.1:8001/metronic-tailwind-html/demo10/account/members/team-members"
-            rel="canonical" />
+        <link href="https://127.0.0.1:8001/metronic-tailwind-html/demo10/account/members/team-members" rel="canonical" />
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
         <meta content="Team members page, using Tailwind CSS" name="description" />
         <meta content="@keenthemes" name="twitter:site" />
@@ -246,9 +245,9 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                 <div class="relative">
                                                     <i
                                                         class="ki-filled ki-magnifier leading-none text-md text-gray-500 absolute top-1/2 start-0 -translate-y-1/2 ms-3">
-                                                        </i>
-                                                    <input class="input input-sm pl-8"
-                                                        type="search" wire:model.live.debounce.300ms="search" placeholder="Search" />
+                                                    </i>
+                                                    <input class="input input-sm pl-8" type="search"
+                                                        wire:model.live.debounce.300ms="search" placeholder="Search" />
                                                 </div>
                                                 <a wire:navigate href="/add/services">
                                                     <button class="dropdown-toggle btn btn-sm btn-light">
@@ -390,7 +389,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                         </div>
                                                                                         <div class="menu-item">
                                                                                             <a class="menu-link"
-                                                                                                href="#">
+                                                                                            href="/edit/{{ $service->id }}/services">
                                                                                                 <span
                                                                                                     class="menu-icon">
                                                                                                     <i
@@ -398,7 +397,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                                     </i>
                                                                                                 </span>
                                                                                                 <span
-                                                                                                    class="menu-title">
+                                                                                                    class="menu-title"
+                                                                                                    >
                                                                                                     Edit
                                                                                                 </span>
                                                                                             </a>
@@ -407,7 +407,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                         </div>
                                                                                         <div class="menu-item">
                                                                                             <a class="menu-link"
-                                                                                                href="#">
+                                                                                                >
                                                                                                 <span
                                                                                                     class="menu-icon">
                                                                                                     <i
@@ -415,6 +415,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                                     </i>
                                                                                                 </span>
                                                                                                 <span
+                                                                                                    wire:click="delete({{ $service->id }})"
+                                                                                                    wire:confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE"
                                                                                                     class="menu-title">
                                                                                                     Remove
                                                                                                 </span>
@@ -424,6 +426,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                 </div>
                                                                             </div>
                                                                         </td>
+
                                                                     </tr>
                                                                     </tr>
                                                                 @endforeach
@@ -441,7 +444,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                 <div class="card-footer ..." wire:ignore.self>
                                                     <div class="flex items-center gap-2 order-2 md:order-1">
                                                         Show
-                                                        <select class="select select-sm w-16" wire:model.live="perPage">
+                                                        <select class="select select-sm w-16"
+                                                            wire:model.live="perPage">
                                                             <option value="5">5</option>
                                                             <option value="10">10</option>
                                                             <option value="20">20</option>
@@ -488,7 +492,32 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                 }
             });
         </script>
-        </body>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const toggle = document.querySelector('[data-theme-toggle]');
+                toggle.addEventListener("change", function() {
+                    const isDark = this.checked;
+
+                    if (isDark) {
+                        document.documentElement.classList.add("dark");
+                        localStorage.setItem("theme", "dark");
+                    } else {
+                        document.documentElement.classList.remove("dark");
+                        localStorage.setItem("theme", "light");
+                    }
+                });
+
+                // Saat halaman dimuat, ambil preferensi dari localStorage
+                const storedTheme = localStorage.getItem("theme");
+                if (storedTheme === "dark") {
+                    document.documentElement.classList.add("dark");
+                    toggle.checked = true;
+                }
+            });
+        </script>
+
+    </body>
 
     </html>
 </div>
