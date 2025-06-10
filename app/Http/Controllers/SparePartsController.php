@@ -41,27 +41,27 @@ class SparePartsController extends Controller implements HasMiddleware
             'stock' => 'required|numeric',
         ]);
 
-        $sparePart = SpareParts::create($fields);
+        $spareParts = SpareParts::create($fields);
 
-        return $sparePart;
+        return $spareParts;
     }
 
     public function show($id)
     {
-        $sparePart = SpareParts::find($id);
+        $spareParts = SpareParts::find($id);
 
-        if (!$sparePart) {
+        if (!$spareParts) {
             return response()->json(['message' => 'Spare part not found'], 404);
         }
 
-        return response()->json($sparePart);
+        return response()->json($spareParts);
     }
 
     public function update(Request $request, $id)
     {
-        $sparePart = SpareParts::find($id);
+        $spareParts = SpareParts::find($id);
 
-        if (!$sparePart) {
+        if (!$spareParts) {
             return response()->json(['message' => 'Spare part not found'], 404);
         }
 
@@ -73,20 +73,20 @@ class SparePartsController extends Controller implements HasMiddleware
             'stock' => 'required|numeric',
         ]);
 
-        $sparePart->update($fields);
+        $spareParts->update($fields);
 
-        return $sparePart;
+        return $spareParts;
     }
 
     public function destroy($id)
     {
-        $sparePart = SpareParts::find($id);
+        $spareParts = SpareParts::find($id);
 
-        if (!$sparePart) {
+        if (!$spareParts) {
             return response()->json(['message' => 'Spare part not found'], 404);
         }
 
-        $sparePart->delete();
+        $spareParts->delete();
 
         return response()->json(['message' => 'Spare part deleted']);
     }
