@@ -390,7 +390,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                         </div>
                                                                                         <div class="menu-item">
                                                                                             <a class="menu-link"
-                                                                                                href="#">
+                                                                                                href="/edit/{{ $sparepart->id }}/spareparts">
                                                                                                 <span
                                                                                                     class="menu-icon">
                                                                                                     <i
@@ -407,7 +407,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                         </div>
                                                                                         <div class="menu-item">
                                                                                             <a class="menu-link"
-                                                                                                href="#">
+                                                                                                href="{{ route('admin.spareparts.show', $sparepart->id) }}">
                                                                                                 <span
                                                                                                     class="menu-icon">
                                                                                                     <i
@@ -416,8 +416,27 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                                                                                 </span>
                                                                                                 <span
                                                                                                     class="menu-title">
-                                                                                                    Remove
+                                                                                                    Show
                                                                                                 </span>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="menu-separator">
+                                                                                        </div>
+                                                                                        <div class="menu-item">
+                                                                                            <a class="menu-link"
+                                                                                                >
+                                                                                                <span
+                                                                                                    class="menu-icon">
+                                                                                                    <i
+                                                                                                        class="ki-filled ki-trash">
+                                                                                                    </i>
+                                                                                                </span>
+                                                                                                <span
+                                                                                                wire:click="delete({{ $sparepart->id }})"
+                                                                                                wire:confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE"
+                                                                                                class="menu-title">
+                                                                                                Remove
+                                                                                            </span>
                                                                                             </a>
                                                                                         </div>
                                                                                     </div>

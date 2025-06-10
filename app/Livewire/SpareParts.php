@@ -18,6 +18,16 @@ class SpareParts extends Component
 
     // public function updatedPerPage() {}
 
+    public function delete($id)
+    {
+        $sparePart = ModelsSpareParts::find($id);
+
+        if ($sparePart) {
+            $sparePart->delete();
+        }
+
+        return $this->redirect('/dashboard/admin/spareparts', navigate: true);
+    }
     public function setSortBy($sortColum)
     {
         if ($this->sortBy == $sortColum) {
