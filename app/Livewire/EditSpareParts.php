@@ -2,44 +2,46 @@
 
 namespace App\Livewire;
 
+use App\Models\SpareParts;
+use App\Models\Workshops;
 use Livewire\Component;
 
 class EditSpareParts extends Component
 {
-    public $spare_parts_name = '';
-    public $spare_parts_description = '';
-    public $spare_parts_price = '';
-    public $spare_parts_stock = '';
+    public $spareparts_name = '';
+    public $spareparts_description = '';
+    public $spareparts_price = '';
+    public $spareparts_stock = '';
     public $workshop_id;
     public $all_workshops;
-    public $spare_parts_details;
+    public $spareparts_details;
     public function mount($id)
     {
-        $this->spare_parts_details = SpareParts::find($id);
-        $this->workshop_id = $this->spare_parts_details->workshop_id;
-        $this->spare_parts_name = $this->spare_parts_details->name;
-        $this->spare_parts_description = $this->spare_parts_details->description;
-        $this->spare_parts_price = $this->spare_parts_details->price;
-        $this->spare_parts_stock = $this->spare_parts_details->stock;
+        $this->spareparts_details = SpareParts::find($id);
+        $this->workshop_id = $this->spareparts_details->workshop_id;
+        $this->spareparts_name = $this->spareparts_details->name;
+        $this->spareparts_description = $this->spareparts_details->description;
+        $this->spareparts_price = $this->spareparts_details->price;
+        $this->spareparts_stock = $this->spareparts_details->stock;
 
         $this->all_workshops = Workshops::all();
     }
     public function update()
     {
         $this->validate([
-            'spare_parts_name' => 'required|string|max:255',
-            'spare_parts_description' => 'nullable|string|max:1000',
-            'spare_parts_price' => 'required|numeric|min:0',
-            'spare_parts_stock' => 'required|integer|min:0',
+            'spareparts_name' => 'required|string|max:255',
+            'spareparts_description' => 'nullable|string|max:1000',
+            'spareparts_price' => 'required|numeric|min:0',
+            'spareparts_stock' => 'required|integer|min:0',
             'workshop_id' => 'required|exists:workshops,id',
         ]);
 
-        $this->spare_parts_details->update([
+        $this->spareparts_details->update([
             'workshop_id' => $this->workshop_id,
-            'name' => $this->spare_parts_name,
-            'description' => $this->spare_parts_description,
-            'price' => $this->spare_parts_price,
-            'stock' => $this->spare_parts_stock,
+            'name' => $this->spareparts_name,
+            'description' => $this->spareparts_description,
+            'price' => $this->spareparts_price,
+            'stock' => $this->spareparts_stock,
         ]);
 
         return $this->redirect('/dashboard/admin/spareparts', navigate: true);

@@ -13,29 +13,7 @@
 
         <form wire:submit="update">
             <!-- Section -->
-            <div
-                class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-                <label for="af-payment-billing-contact" class="inline-block text-sm font-medium dark:text-white">
-                    Workshop Id
-                </label>
-
-
-
-                <div class="sm:col-span-9">
-                    <select wire:model="workshop_id"
-                        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                        <option selected="">Select Workshop</option>
-                        @foreach ($all_workshops as $workshop)
-                            <option value="{{ $workshop->id }}" wire:key="{{ $workshop->id }}" {{ $service_details->workshop_id == $workshop->id ? 'selected' : '' }}>{{ $workshop->name }}
-                            </option>
-                        @endforeach
-
-                    </select>
-                    @error('workshop_id')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
+           
             <!-- End Section -->
             <!-- Section -->
             <div
@@ -45,10 +23,10 @@
                 </label>
 
                 <div class="mt-2 space-y-3">
-                    <input id="af-payment-billing-contact" wire:model="spare_parts_name" type="text"
+                    <input id="af-payment-billing-contact" wire:model="spareparts_name" type="text"
                         class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Name">
-                    @error('spare_parts_name')
+                    @error('spareparts_name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -62,10 +40,10 @@
                 </label>
 
                 <div class="mt-2 space-y-3">
-                    <input id="af-payment-billing-contact" wire:model="spare_parts_description" type="text"
+                    <input id="af-payment-billing-contact" wire:model="spareparts_description" type="text"
                         class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Description">
-                    @error('spare_parts_description')
+                    @error('spareparts_description')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -79,12 +57,12 @@
                 </label>
 
                 <div class="mt-2 space-y-3">
-                    <input id="af-payment-billing-contact" wire:model="spare_parts_price" type="text"
+                    <input id="af-payment-billing-contact" wire:model="spareparts_price" type="text"
                         inputmode="decimal" oninput="this.value = this.value.replace(/[^0-9.]/g, '')"
                         class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Price">
 
-                    @error('spare_parts_price')
+                    @error('spareparts_price')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -98,11 +76,11 @@
                 </label>
 
                 <div class="mt-2 space-y-3">
-                    <input id="af-payment-billing-contact" wire:model="spare_parts_stock" type="text"
+                    <input id="af-payment-billing-contact" wire:model="spareparts_stock" type="text"
                         inputmode="decimal" oninput="this.value = this.value.replace(/[^0-9.]/g, '')"
                         class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Duration">
-                    @error('spare_parts_stock')
+                    @error('spareparts_stock')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
