@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use App\Models\SpareParts;
 use App\Models\Workshops;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddSpareParts extends Component
 {
     public $workshop_id;
+    public $workshop;
     public $spareparts_name = '';
     public $spareparts_description = '';
     public $spareparts_price = '';
@@ -18,6 +20,9 @@ class AddSpareParts extends Component
     public function mount()
     {
         $this->all_workshops = Workshops::all();
+        $user = Auth::user(); 
+        $this->workshop = $user->workshop;
+        $this->workshop_id = $this->workshop?->id;
     }
 
     public function save()

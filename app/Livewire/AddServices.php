@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Services;
 use App\Models\Workshops;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddServices extends Component
 {
     public $workshop_id;
+    public $workshop;
     public $services_name = '';
     public $services_description = '';
     public $services_price = '';
@@ -18,6 +20,9 @@ class AddServices extends Component
     public function mount()
     {
         $this->all_workshops = Workshops::all();
+        $user = Auth::user();
+        $this->workshop = $user->workshop;
+        $this->workshop_id = $this->workshop?->id;
     }
 
     public function save(){

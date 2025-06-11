@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleAuthController;
 use App\Livewire\AddServices;
 use App\Livewire\AddSpareParts;
 use App\Livewire\DashboarAdmin;
@@ -27,6 +28,10 @@ Route::get('/edit/{id}/services', EditServices::class);
 Route::get('/edit/{id}/spareparts', EditSpareParts::class);
 Route::get('/dashboard/admin/services/{services_id}/show', ShowService::class)->name('admin.services.show');
 Route::get('/dashboard/admin/spareparts/{spareparts_id}/show', ShowSpareParts::class)->name('admin.spareparts.show');
+
+Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+
 
 
 

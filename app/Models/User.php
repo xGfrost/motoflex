@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Devdojo\Auth\Models\User as AuthUser;
 
-class User extends Authenticatable
+class User extends AuthUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasApiTokens;
@@ -31,7 +32,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'role' => 'user',  
+        'role' => 'user',
     ];
 
     /**
@@ -91,5 +92,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(documentreminders::class);
     }
-    
+
+    public function workshop()
+    {
+        return $this->hasOne(Workshops::class);
+    }
 }
