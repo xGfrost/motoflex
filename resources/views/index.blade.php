@@ -8,13 +8,15 @@ Support: https://devs.keenthemes.com
 Follow: https://www.twitter.com/keenthemes
 License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
 -->
+
 <!DOCTYPE html>
-<html class="h-full" data-theme="true" data-theme-mode="light" dir="ltr" lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
     <base href="../../../../">
     <title>
-        DASHBOARD ADMIN
+        Motoflex
     </title>
     <meta charset="utf-8" />
     <meta content="follow, index" name="robots" />
@@ -43,10 +45,16 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
     <link href="assets/vendors/apexcharts/apexcharts.css" rel="stylesheet" />
     <link href="assets/vendors/keenicons/styles.bundle.css" rel="stylesheet" />
     <link href="assets/css/styles.css" rel="stylesheet" />
+
 </head>
+
 
 <body
     class="antialiased flex h-full text-base text-gray-700 [--tw-page-bg:var(--tw-coal-300)] [--tw-content-bg:var(--tw-light)] [--tw-content-bg-dark:var(--tw-coal-500)] [--tw-content-scrollbar-color:#e8e8e8] [--tw-header-height:60px] [--tw-sidebar-width:270px] bg-[--tw-page-bg] lg:overflow-hidden">
+    @yield('content')
+
+    @livewireScripts
+    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     <!-- Theme Mode -->
     <script>
         const defaultThemeMode = 'light'; // light|dark|system
@@ -85,7 +93,8 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                     <i class="ki-filled ki-menu">
                     </i>
                 </button>
-            </div>
+            </div>    @livewireStyles
+
             <!-- End of Container -->
         </header>
         <!-- End of Header -->
@@ -186,6 +195,23 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                         <span
                                             class="menu-title text-sm text-gray-800 font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
                                             Services
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu flex flex-col w-full gap-1.5 px-3.5" data-menu="true"
+                                data-menu-accordion-expand-all="false" id="sidebar_primary_menu">
+                                <div class="menu-item">
+                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md {{ Request::is('services') ? 'bg-gray-100' : '' }} menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
+                                        href="/auth/logout">
+                                        <span
+                                            class="menu-icon items-start text-lg text-gray-600 menu-item-active:text-gray-900 menu-item-here:text-gray-900">
+                                            <i class="ki-filled ki-home-3">
+                                            </i>
+                                        </span>
+                                        <span
+                                            class="menu-title text-sm text-gray-800 font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
+                                            Logout
                                         </span>
                                     </a>
                                 </div>

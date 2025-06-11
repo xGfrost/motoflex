@@ -7,27 +7,13 @@
                 Services
             </h2>
             <p class="text-sm text-gray-600 dark:text-neutral-400">
-                Add
+                Edit
             </p>
         </div>
 
-        <form wire:submit="save">
+        <form wire:submit="update">
             <!-- Section -->
-            <div
-                class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-                <label for="af-payment-billing-contact" class="inline-block text-sm font-medium dark:text-white">
-                    Workshop Id
-                </label>
-
-
-
-                <div class="sm:col-span-9">
-                    <input type="text" value="{{ $workshop->name }}"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm bg-gray-100 cursor-not-allowed"
-                        disabled>
-                    <input type="hidden" wire:model="workshop_id" value="{{ $workshop->id }}">
-                </div>
-            </div>
+            
             <!-- End Section -->
             <!-- Section -->
             <div
