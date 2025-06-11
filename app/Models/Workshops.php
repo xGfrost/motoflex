@@ -24,31 +24,31 @@ class Workshops extends Model
 
     public function services()
     {
-        return $this->hasMany(Services::class);
+        return $this->hasMany(Services::class, 'workshop_id');
     }
 
     public function spareParts()
     {
-        return $this->hasMany(SpareParts::class);
+        return $this->hasMany(SpareParts::class, 'workshop_id');
     }
 
     public function ratings()
     {
-        return $this->hasMany(WorkshopRating::class);
+        return $this->hasMany(WorkshopRating::class, 'workshop_id');
     }
 
     public function reports()
     {
-        return $this->hasMany(WorkshopReports::class);
+        return $this->hasMany(WorkshopReports::class, 'workshop_id');
     }
 
     public function chats()
     {
-        return $this->hasMany(chats::class);
+        return $this->hasMany(chats::class, 'workshop_id');
     }
 
     public function transactions()
     {
-        return $this->hasMany(transaction::class);
+        return $this->hasMany(transaction::class, 'workshop_id');
     }
 }
