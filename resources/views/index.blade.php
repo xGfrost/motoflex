@@ -199,6 +199,23 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                     </a>
                                 </div>
                             </div>
+                            <div class="menu flex flex-col w-full gap-1.5 px-3.5" data-menu="true"
+                                data-menu-accordion-expand-all="false" id="sidebar_primary_menu">
+                                <div class="menu-item">
+                                    <a class="menu-link gap-2.5 py-2 px-2.5 rounded-md {{ Request::is('services') ? 'bg-gray-100' : '' }} menu-item-active:bg-gray-100 menu-link-hover:bg-gray-100 !menu-item-here:bg-transparent"
+                                        href="/auth/logout">
+                                        <span
+                                            class="menu-icon items-start text-lg text-gray-600 menu-item-active:text-gray-900 menu-item-here:text-gray-900">
+                                            <i class="ki-filled ki-home-3">
+                                            </i>
+                                        </span>
+                                        <span
+                                            class="menu-title text-sm text-gray-800 font-medium menu-item-here:text-gray-900 menu-item-active:text-gray-900 menu-link-hover:text-gray-900">
+                                            Logout
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- End of Primary Menu -->
