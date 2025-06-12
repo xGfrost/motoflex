@@ -53,7 +53,6 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
     class="antialiased flex h-full text-base text-gray-700 [--tw-page-bg:var(--tw-coal-300)] [--tw-content-bg:var(--tw-light)] [--tw-content-bg-dark:var(--tw-coal-500)] [--tw-content-scrollbar-color:#e8e8e8] [--tw-header-height:60px] [--tw-sidebar-width:270px] bg-[--tw-page-bg] lg:overflow-hidden">
     @yield('content')
 
-    @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     <!-- Theme Mode -->
     <script>
@@ -87,13 +86,13 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
             <!-- Container -->
             <div class="container-fixed flex items-center justify-between flex-wrap gap-3">
                 <a href="html/demo10.html">
-                    <img class="size-[34px]" src="assets/media/app/mini-logo-circle-success.svg" />
+                    <img class="size-[34px]" src="assets/media/app/motoflexbox.svg" />
                 </a>
                 <button class="btn btn-icon btn-light btn-clear btn-sm -me-2" data-drawer-toggle="#sidebar">
                     <i class="ki-filled ki-menu">
                     </i>
                 </button>
-            </div>    @livewireStyles
+            </div>
 
             <!-- End of Container -->
         </header>
@@ -108,7 +107,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                 <div class="flex flex-col gap-2.5" id="sidebar_header">
                     <div class="flex items-center gap-2.5 px-3.5 h-[70px]">
                         <a href="/dashboard/admin">
-                            <img class="size-[34px]" src="assets/media/app/mini-logo-circle-success.svg" />
+                            <img class="size-[34px]" src="assets/media/app/motoflexbox.svg" />
                         </a>
                         <div class="menu menu-default grow" data-menu="true">
                             <div class="menu-item grow" data-menu-item-offset="0, 15px"
@@ -118,7 +117,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                     <span class="text-lg font-medium text-inverse grow">
                                         Motoflex
                                     </span>
-                                    <div class="flex flex-col text-gray-900 font-medium">
+                                    {{-- <div class="flex flex-col text-gray-900 font-medium">
                                         <span class="menu-arrow">
                                             <i class="ki-filled ki-up">
                                             </i>
@@ -127,7 +126,7 @@ License: https://keenthemes.com/metronic/tailwind/docs/getting-started/license
                                             <i class="ki-filled ki-down">
                                             </i>
                                         </span>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                             </div>
