@@ -24,12 +24,12 @@ class Workshops extends Model
 
     public function services()
     {
-        return $this->hasMany(Services::class);
+        return $this->hasMany(Services::class, 'workshop_id');
     }
 
     public function spareParts()
     {
-        return $this->hasMany(SpareParts::class);
+        return $this->hasMany(SpareParts::class, 'workshop_id');
     }
 
     public function ratings()
