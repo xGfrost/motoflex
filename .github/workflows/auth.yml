@@ -47,18 +47,16 @@ jobs:
     - name: Copy .env
       run: cp .env.example .env
 
-    - name: Set Environment Variables
+    - name: Set Environment .env content
       run: |
-        printf "APP_NAME=Laravel\n" >> .env
-        printf "APP_ENV=testing\n" >> .env
-        printf "APP_KEY=base64:TestKeyForCI1234567890===\n" >> .env
-        printf "APP_DEBUG=true\n" >> .env
-        printf "DB_CONNECTION=pgsql\n" >> .env
-        printf "DB_HOST=127.0.0.1\n" >> .env
-        printf "DB_PORT=5432\n" >> .env
-        printf "DB_DATABASE=motoflex\n" >> .env
-        printf "DB_USERNAME=postgres\n" >> .env
-        printf "DB_PASSWORD=Delvinet7475\n" >> .env
+        echo "APP_KEY=base64:TestKeyForCI1234567890===" >> .env
+        echo "DB_CONNECTION=pgsql" >> .env
+        echo "DB_HOST=127.0.0.1" >> .env
+        echo "DB_PORT=5432" >> .env
+        echo "DB_DATABASE=motoflex" >> .env
+        echo "DB_USERNAME=postgres" >> .env
+        echo "DB_PASSWORD=Delvinet7475" >> .env
+
 
     - name: Generate Key
       run: php artisan key:generate

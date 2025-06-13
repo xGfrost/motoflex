@@ -13,7 +13,7 @@ use App\Livewire\ShowSpareParts;
 use App\Livewire\SpareParts;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return redirect()->route('login');
 });
 
