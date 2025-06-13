@@ -18,7 +18,7 @@ class WorkshopsController extends Controller implements HasMiddleware
 
     public function index(Request $request)
     {
-        $query = Workshops::query()->with('ratings');
+        $query = Workshops::query()->withAvg('ratings', 'rating');
 
         if ($request->has('search') && $request->search != '') {
             $searchTerm = $request->get('search');

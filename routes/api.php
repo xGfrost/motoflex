@@ -11,6 +11,7 @@ use App\Http\Controllers\serviceReminderController;
 use App\Http\Controllers\workshopReportsController;
 use App\Http\Controllers\chatsController;
 use App\Http\Controllers\documentReminderController;
+use App\Http\Controllers\HomeController;
 use App\Models\SpareParts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,7 @@ Route::apiResource('documentreminders', documentReminderController::class);
 Route::post('/send-reminder', [documentReminderController::class, 'sendReminder']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('home', [HomeController::class, 'index']);
     Route::get('chats', [chatsController::class, 'index']);
 
     Route::get('chats/{chatId}/messages', [chatsController::class, 'show']);
