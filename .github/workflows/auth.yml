@@ -10,6 +10,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: Delvinet7475
+          POSTGRES_DB: motoflex
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v4
 
@@ -35,11 +50,17 @@ jobs:
         rm -rf tests
         ln -s vendor/devdojo/auth/tests tests
 
-    - name: Create sqlite file
-      run: touch database/database.sqlite
-
     - name: Copy .env file
       run: cp .env.example .env
+
+    - name: Set environment variables for PostgreSQL
+      run: |
+        sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=pgsql/' .env
+        sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' .env
+        sed -i 's/DB_PORT=.*/DB_PORT=5432/' .env
+        sed -i 's/DB_DATABASE=.*/DB_DATABASE=motoflex/' .env
+        sed -i 's/DB_USERNAME=.*/DB_USERNAME=postgres/' .env
+        sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=Delvinet7475/' .env
 
     - name: Generate application key
       run: php artisan key:generate
@@ -49,11 +70,6 @@ jobs:
 
     - name: Clear config cache
       run: php artisan config:clear
-
-    - name: Update DB connection in .env
-      run: |
-        sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=sqlite/' .env
-        sed -i 's/^DB_DATABASE=laravel/#DB_DATABASE=laravel/' .env
 
     - name: Run the migrations
       run: php artisan migrate
