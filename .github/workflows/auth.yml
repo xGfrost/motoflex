@@ -10,21 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:13
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: Delvinet7475
-          POSTGRES_DB: motoflex
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
     - uses: actions/checkout@v4
 
@@ -50,6 +35,9 @@ jobs:
         rm -rf tests
         ln -s vendor/devdojo/auth/tests tests
 
+    - name: Create sqlite file
+      run: touch database/database.sqlite
+
     - name: Copy .env file
       run: cp .env.example .env
 
@@ -64,9 +52,6 @@ jobs:
 
     - name: Generate application key
       run: php artisan key:generate
-
-    - name: Remove config cache file
-      run: rm -f bootstrap/cache/config.php
 
     - name: Clear config cache
       run: php artisan config:clear
