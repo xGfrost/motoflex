@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:13
@@ -25,15 +26,17 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
         extensions: mbstring, xml, ctype, iconv, pgsql
+        tools: composer
 
-    - name: Cache Composer Packages
+    - name: Cache Composer packages
       uses: actions/cache@v4
       with:
         path: ~/.composer/cache
@@ -41,13 +44,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-composer-
 
-    - name: Install Dependencies
-      run: composer install --no-progress --prefer-dist
+    - name: Install Composer dependencies
+      run: composer install --no-interaction --no-progress --prefer-dist
 
-    - name: Copy .env
+    - name: Copy .env file
       run: cp .env.example .env
 
-    - name: Set Environment Variables
+    - name: Set environment DB credentials
       run: |
         echo "APP_KEY=base64:TestKeyForCI1234567890===" >> .env
         echo "DB_CONNECTION=pgsql" >> .env
@@ -57,17 +60,17 @@ jobs:
         echo "DB_USERNAME=postgres" >> .env
         echo "DB_PASSWORD=Delvinet7475" >> .env
 
-    - name: Generate Key
+    - name: Generate application key
       run: php artisan key:generate
 
-    - name: Run Migrations
+    - name: Run Laravel migrations
       run: php artisan migrate --force
 
-    - name: Run Auth Migrations
+    - name: Run DevDojo Auth migrations
       run: php artisan migrate --path=vendor/devdojo/auth/database/migrations --force
 
-    - name: Install PestPHP & Dusk
+    - name: Install PestPHP, Dusk, and additional test tools
       run: composer require pestphp/pest laravel/dusk alebatistella/duskapiconf --dev --with-all-dependencies
 
-    - name: Run Tests
+    - name: Run tests
       run: php artisan test
