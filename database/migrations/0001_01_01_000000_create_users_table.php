@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('coin')->default(0);
             $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
