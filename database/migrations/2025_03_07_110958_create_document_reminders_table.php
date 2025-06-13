@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('document_reminders', function (Blueprint $table) {
-            $table->id(); 
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); 
-            $table->string('name'); 
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('name');
             $table->date('expiration_date');
             $table->date('reminder_date');
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 

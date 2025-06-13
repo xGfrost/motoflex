@@ -2,9 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\chatMessages;
+use App\Models\chats;
+use App\Models\serviceReminder;
 use App\Models\Services;
 use App\Models\SpareParts;
+use App\Models\transaction;
+use App\Models\transactionItem;
 use App\Models\User;
+use App\Models\WorkshopRating;
+use App\Models\workshopReports;
 use App\Models\Workshops;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -88,6 +95,74 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Layanan perawatan dan perbaikan kendaraan.',
                 'price' => rand(100, 300),
                 'duration' => rand(30, 90), // in minutes
+            ]);
+        }
+        // ========== TRANSACTIONS & ITEMS ==========
+        foreach ($users as $i => $user) {
+            $transaction = transaction::create([
+                'user_id' => $user->id,
+                'workshop_id' => $workshops[$i]->id,
+                'transaction_type' => 'service',
+                'total_price' => 150.00,
+                'payment_status' => 'paid',
+                'payment_method' => 'credit_card',
+            ]);
+
+            transactionItem::create([
+                'transaction_id' => $transaction->id,
+                'item_type' => 'service',
+                'item_id' => 1,
+                'quantity' => 1,
+                'price' => 150.00,
+                'is_additional' => false,
+            ]);
+        }
+
+        // ========== WORKSHOP REPORTS ==========
+        foreach ($workshops as $workshop) {
+            workshopReports::create([
+                'workshop_id' => $workshop->id,
+                'total_transactions' => rand(5, 20),
+                'total_revenue' => rand(1000, 5000),
+                'total_spare_parts_sold' => rand(10, 50),
+                'total_services_completed' => rand(5, 25),
+                'report_period' => '2025-06',
+            ]);
+        }
+
+        // ========== CHATS & MESSAGES ==========
+        foreach ($users as $i => $user) {
+            $chat = chats::create([
+                'user_id' => $user->id,
+                'workshop_id' => $workshops[$i]->id,
+            ]);
+
+            chatMessages::create([
+                'chat_id' => $chat->id,
+                'sender_id' => $user->id,
+                'message' => 'Halo, apakah bengkel buka hari ini?',
+                'sent_at' => now(),
+            ]);
+        }
+
+        // ========== WORKSHOP RATINGS ==========
+        foreach ($users as $i => $user) {
+            WorkshopRating::create([
+                'user_id' => $user->id,
+                'workshop_id' => $workshops[$i]->id,
+                'rating' => rand(3, 5),
+                'review' => 'Layanan bagus dan cepat!',
+            ]);
+        }
+
+        // ========== SERVICE REMINDERS ==========
+        foreach ($users as $user) {
+            serviceReminder::create([
+                'user_id' => $user->id,
+                'name' => 'Ganti Oli',
+                'description' => 'Ingatkan untuk ganti oli mesin',
+                'reminder_date' => now()->addDays(rand(5, 30)),
+                'is_completed' => false,
             ]);
         }
     }
