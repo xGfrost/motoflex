@@ -1,0 +1,54 @@
+[33m1ae5333[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Initial project setup with working login redirect and tests
+[33m221b5cf[m update workflow for PostgreSQL
+[33mb67b2df[m Fix test redirect and update environment settings
+[33m0534f84[m update workflow for PostgreSQL
+[33ma34846b[m update workflow for PostgreSQL
+[33m7554c48[m update workflow for PostgreSQL
+[33m2c9c96b[m Fix CI: switch to PostgreSQL in workflow
+[33mc0c7da6[m Add email_verified_at to users table migration
+[33meeca472[m Add CI for authentication tests with PostgreSQL
+[33m987db05[m Add Laravel GitHub Actions CI with PostgreSQL
+[33maa828ae[m add all seeder data
+[33m594b77e[m change the logo
+[33mbf8646f[m workshop model add workshop_id for services and spareparts hasmany
+[33me7c1e06[m fix conflict
+[33m04329a4[m fix: auth & users table
+[33m40a7a40[m if input the web url it will redirect to login not to welcome laravel
+[33m0794501[m add logout
+[33m273b368[m login register done and update the add spare parts and service in the field workshop no need to input by user its already connected to database
+[33m5220aa8[m search controller still bug
+[33m622fb56[m delete the workshop id edit
+[33m9344d93[m spare parts fitur already done
+[33m6710af5[m already make the show button
+[33m6675a36[m edit and delete function already done
+[33me70dbdc[m services dashboardadmin
+[33m51a9048[m fix the limir word on dscription an workshop name
+[33m50dc211[m change the title
+[33md0818af[m get the data is ready but the pagination and the search button still error
+[33m0dbac7e[m add form data for spare parts and services on dasahboard
+[33m9b58ab1[m make dashoard workshop only
+[33m1b465ea[m add: user database adding the coin rows
+[33mf86efa9[m i already fix the notification for document reminder the controller already success and the notification can send to whatsapp
+[33m0676913[m already fix the laragon error
+[33ma177791[m i command the sed reminder and send whats app notification
+[33mf42c339[m i only fix the format
+[33m0348bf4[m deleted from file web.php
+[33m9b92242[m i change use fonnte tu send the notification
+[33mcab0740[m i add document reminder send to wa  it already send but the notification is not send it to the device
+[33mbdcda93[m i fix the delete method
+[33m8be3c01[m i already fix the policy
+[33m6120cb3[m i add CRUD API for dcoument reminder with the policy and i alread add the route
+[33md96f14b[m i add model for document reminder and the migration
+[33m2ccf09a[m set up the model of transaction and transaction item
+[33m3f1ef18[m i already make api for chatmessages and chats
+[33m15fe301[m i only set up the pusher to api chat
+[33ma25c9dd[m i add API crud for workshopReports
+[33m39015e0[m i add api that can get the reminder date and is completed
+[33me0a9eb4[m i add api service reminder and i already make the create and update api for it
+[33m5621144[m  when get the rating it will show the average rating
+[33m10c6842[m i add api create rating and review
+[33m5712519[m i already fix it in api.php u must change the class to sparepartscontroller
+[33m38df349[m i make crud spareparts but still error the error is : Call to undefined method App\Models\SpareParts::store()
+[33m750b2e4[m i add service crud
+[33me89e2bd[m i add crud for workshops
+[33mc7ae4ce[m i add the database motoflex and authcontroller for register login and forgetpassword

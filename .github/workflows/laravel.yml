@@ -9,15 +9,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
         image: postgres:13
+        ports:
+          - 5432:5432
         env:
           POSTGRES_DB: motoflex
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: Delvinet7475
-        ports:
-          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -39,38 +40,44 @@ jobs:
         path: ~/.composer/cache
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-composer-
+          ${{ runner.os }}-composer-git
 
     - name: Install Dependencies
       run: composer install --no-progress --prefer-dist
 
-    - name: Copy .env
+    - name: Remove current tests and symlink to DevDojo Auth
+      run: |
+        rm -rf tests
+        ln -s vendor/devdojo/auth/tests tests
+
+    - name: Copy .env file
       run: cp .env.example .env
 
-    - name: Set Environment .env content
-      run: |
-        echo "APP_KEY=base64:TestKeyForCI1234567890===" >> .env
-        echo "DB_CONNECTION=pgsql" >> .env
-        echo "DB_HOST=127.0.0.1" >> .env
-        echo "DB_PORT=5432" >> .env
-        echo "DB_DATABASE=motoflex" >> .env
-        echo "DB_USERNAME=postgres" >> .env
-        echo "DB_PASSWORD=Delvinet7475" >> .env
-
-
-    - name: Generate Key
+    - name: Generate application key
       run: php artisan key:generate
 
-    - name: Clear Config Cache
+    - name: Remove config cache file
+      run: rm -f bootstrap/cache/config.php
+
+    - name: Clear config cache
       run: php artisan config:clear
 
-    - name: Run Migrations
-      run: php artisan migrate --force
+    - name: Update DB connection to PostgreSQL
+      run: |
+        sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=pgsql/' .env
+        sed -i 's/DB_HOST=.*/DB_HOST=127.0.0.1/' .env
+        sed -i 's/DB_PORT=.*/DB_PORT=5432/' .env
+        sed -i 's/DB_DATABASE=.*/DB_DATABASE=motoflex/' .env
+        sed -i 's/DB_USERNAME=.*/DB_USERNAME=postgres/' .env
+        sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=Delvinet7475/' .env
 
-    - name: Run Auth Migrations
-      run: php artisan migrate --path=vendor/devdojo/auth/database/migrations --force
+    - name: Run the migrations
+      run: php artisan migrate
 
-    - name: Install PestPHP & Dusk
+    - name: Run the Auth Migrations
+      run: php artisan migrate --path=vendor/devdojo/auth/database/migrations
+
+    - name: Install PestPHP and Laravel Dusk
       run: composer require pestphp/pest laravel/dusk alebatistella/duskapiconf --dev --with-all-dependencies
 
     - name: Run Tests
